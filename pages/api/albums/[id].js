@@ -4,6 +4,7 @@ import { ObjectId } from 'mongodb'
 export default (req, res) => {
   if (req.method === 'GET') { return show(req, res) }
   if (req.method === 'POST') { return update(req, res) }
+  if (req.method === 'DELETE') { return destroy(req, res) }
 
   return res.status(404).send({ error: 'Route not found' })
 }
@@ -41,5 +42,21 @@ async function update (req, res) {
     return show(req, res)
   } else {
     res.status(422).json({});
+  }
+}
+
+async function destroy (req, res) {
+  try {
+    const album = await database.get('albums').findOneAndDelete({
+      _id: ObjectId(req.params.id), name: req.body.name
+    });
+
+    if (album) {
+      res.status(204);
+    } else {
+      res.status(404);
+    }
+  } catch {
+    res.status(404);
   }
 }
