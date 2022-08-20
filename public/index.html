@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <title>Guia Álbum da Copa</title>
+  <link rel="apple-touch-icon" sizes="167x167" href="icon-ios.png">
+  <meta name="apple-mobile-web-app-title" content="Guia Álbum 2022">
+  <script type="text/javascript" src="model.js"></script>
+  <script type="text/javascript" src="token.js"></script>
+  <script type="text/javascript" src="copy.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">
+      <img src="qatar-2022.svg" width="30" height="30"
+          class="d-inline-block align-top" alt=""> Guia do Álbum da Copa
+    </a>
+    <div class="btn-block nav-status">
+      <div class="row">
+        <div class="col-7">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-search"></i></span>
+            </div>
+            <input type="number" class="form-control" placeholder="Busca" js-search>
+          </div>
+        </div>
+        <div class="col-5 text-right">
+          <button class='btn m-r' js-option="sync"><i class="fa fa-refresh fa-fw"></i></button>
+          <button class='btn' js-option="toggleMode"><i class="fa fa-pencil fa-fw"></i></button>
+          <button class='btn' js-option="toggleViewMode"><i class="fa fa-globe fa-fw"></i></button>
+        </div>
+      </div>
+      <p class="text-sm">
+        <b>Meu Álbum: </b>
+        <span js-filled-count="">0</span> de <span js-total-count="">0</span>
+        (<span js-status-percent="">0</span>%) |
+        Faltam: <a js-copy href=""><span js-remaining-count="">0</span></a>
+      </p>
+      <p class="text-sm">
+        <b>Meu Token: </b>
+        <a class="m-r" js-option="copyToken" href="#"><i class="fa fa-clipboard"></i> Copiar</a>
+        <a js-option="eraseKey" href="#"><i class="fa fa-sign-out"></i> Sair</a>
+      </p>
+    </div>
+  </nav>
+  <div class="container" js-album></div>
+
+  <template js-token-form>
+    <div class="row section">
+      <div class="col">
+        <div class="card w-100">
+          <div class="card-body">
+            <h1>Configurar Álbum</h1>
+            <p>Informe o Token do Álbum que deseja gerenciar:</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="" id="album-token">
+              <div class="input-group-append">
+                <button class="btn btn-primary js-btn-token" type="button">Confirmar</button>
+              </div>
+            </div>
+
+            <p class="text-sm"><a href="#" js-request-token>Não tenho um token ainda. Criar um Token agora.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template js-album-section>
+    <div class="row section">
+      <div class="col">
+        <div class="card w-100">
+          <div class="card-body">
+            <p><span js-section-name></span> (<span js-section-count=""></span>)</p>
+            <div class="row" js-section-content></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template js-album-sticker>
+    <div class="col-3 button">
+      <button type="button" class="btn btn-default btn-block sticker-btn" js-sticker-button></button>
+    </div>
+  </template>
+
+  <script type="text/javascript" src="view.js"></script>
+  <script type="text/javascript" src="album.js"></script>
+</body>
+</html>
