@@ -62,8 +62,11 @@ document.querySelectorAll('[js-option]').forEach((element) => {
 
 document.querySelector('[js-search]')
   .addEventListener('input', (event) => {
-    navbar = document.querySelector('nav.navbar');
-    element = document.querySelector(`[js-sticker-id="${event.target.value}"]`);
+    let input = event.target.value
+    if (!input.match(/\d^/)) { input = `${input} 1` }
+
+    const navbar = document.querySelector('nav.navbar');
+    element = document.querySelector(`[js-sticker-id="${input.toUpperCase()}"]`);
     if (element) {
       element.scrollIntoView({ block: "start" });
       scrollBy(0, -(navbar.offsetHeight * 1.10));
