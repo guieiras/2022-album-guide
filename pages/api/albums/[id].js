@@ -39,7 +39,7 @@ async function update (req, res) {
     const albums = database.get('albums')
     await albums.update({ _id: ObjectId(req.query.id) }, { $set: updateParams })
 
-    return show(req, res)
+    res.json({ _id: req.query.id, stickers })
   } else {
     res.status(422).json({});
   }
