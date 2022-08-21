@@ -84,7 +84,6 @@ function updateAlbum(response) {
 }
 
 function updateStickerCount(object) {
-  console.log(object)
   Object.keys(object || {}).forEach((sticker) => {
     const stickerButton = document.querySelector(`[js-sticker-id="${sticker}"]`);
     stickerButton.setAttribute('js-sticker-filled', object[sticker]);
